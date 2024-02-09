@@ -1,9 +1,11 @@
-"use client"
+"use client";
+
 import React from 'react';
 import { styled, keyframes } from '@stitches/react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { CaretDownIcon } from '@radix-ui/react-icons';
-import { violet, mauve, indigo, purple, blackA } from '@radix-ui/colors';
+import { purple, iris, blackA } from '@radix-ui/colors';
+
 
 const enterFromRight = keyframes({
   from: { transform: 'translateX(200px)', opacity: 0 },
@@ -57,7 +59,7 @@ const StyledList = styled(NavigationMenuPrimitive.List, {
   all: 'unset',
   display: 'flex',
   justifyContent: 'center',
-  backgroundColor: 'white',
+  backgroundColor: '#ECD9FA',
   padding: 4,
   borderRadius: 6,
   listStyle: 'none',
@@ -72,9 +74,9 @@ const itemStyles = {
   lineHeight: 1,
   borderRadius: 4,
   fontSize: 15,
-  color: violet.violet11,
-  '&:focus': { position: 'relative', boxShadow: `0 0 0 2px ${violet.violet7}` },
-  '&:hover': { backgroundColor: violet.violet3 },
+  color: purple.purple12,
+  '&:focus': { position: 'relative', boxShadow: `0 0 0 2px ${purple.purple7}` },
+  '&:hover': { backgroundColor: purple.purple6 },
 };
 
 const StyledTrigger = styled(NavigationMenuPrimitive.Trigger, {
@@ -88,7 +90,7 @@ const StyledTrigger = styled(NavigationMenuPrimitive.Trigger, {
 
 const StyledCaret = styled(CaretDownIcon, {
   position: 'relative',
-  color: violet.violet10,
+  color: purple.purple10,
   top: 1,
   '[data-state=open] &': { transform: 'rotate(-180deg)' },
   '@media (prefers-reduced-motion: no-preference)': {
@@ -146,9 +148,9 @@ const StyledIndicator = styled(NavigationMenuPrimitive.Indicator, {
 const StyledArrow = styled('div', {
   position: 'relative',
   top: '70%',
-  backgroundColor: 'white',
-  width: 10,
-  height: 10,
+  backgroundColor: '#ECD9FA',
+  width: 15,
+  height: 15,
   transform: 'rotate(45deg)',
   borderTopLeftRadius: 2,
 });
@@ -164,7 +166,7 @@ const StyledViewport = styled(NavigationMenuPrimitive.Viewport, {
   transformOrigin: 'top center',
   marginTop: 10,
   width: '100%',
-  backgroundColor: 'white',
+  backgroundColor: '#ECD9FA',
   borderRadius: 6,
   overflow: 'hidden',
   boxShadow: 'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
@@ -180,7 +182,10 @@ const StyledViewport = styled(NavigationMenuPrimitive.Viewport, {
   },
 });
 
-// Exports
+/*
+  Exports (These link the styles defined to the navigation categories)
+
+*/
 const NavigationMenu = StyledMenu;
 const NavigationMenuList = StyledList;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
@@ -190,7 +195,14 @@ const NavigationMenuContent = StyledContent;
 const NavigationMenuViewport = StyledViewport;
 const NavigationMenuIndicator = StyledIndicatorWithArrow;
 
-// Your app...
+/*
+  Three types of dropdown menu are defined here.
+  gridTemplateRows is the minimum number of sub-menu links.
+  For example, if a default number of three is set, 3 positions are set aside.
+  This will leave a third gap if only two are present. However, the number
+  is not a maximum, so will not limit the number of items that the sub-menu
+  will display.
+*/
 const ContentList = styled('ul', {
   display: 'grid',
   padding: 22,
@@ -213,6 +225,12 @@ const ContentList = styled('ul', {
           gridTemplateRows: 'repeat(3, 1fr)',
         },
       },
+      three: {
+        '@media only screen and (min-width: 600px)': {
+          width: 300,
+          gridTemplateRows: 'repeat(2, 1fr)',
+        },
+      },
     },
   },
 });
@@ -223,12 +241,12 @@ const LinkTitle = styled('div', {
   fontWeight: 500,
   lineHeight: 1.2,
   marginBottom: 5,
-  color: violet.violet12,
+  color: purple.purple12,
 });
 
 const LinkText = styled('p', {
   all: 'unset',
-  color: mauve.mauve11,
+  color: purple.purple11,
   lineHeight: 1.4,
   fontWeight: 'initial',
 });
@@ -241,7 +259,7 @@ const ContentListItem = React.forwardRef(({ children, title, ...props }, forward
       css={{
         padding: 12,
         borderRadius: 6,
-        '&:hover': { backgroundColor: mauve.mauve3 },
+        '&:hover': { backgroundColor: purple.purple6 },
       }}
     >
       <LinkTitle>{title}</LinkTitle>
@@ -262,34 +280,29 @@ const ContentListItemCallout = React.forwardRef(({ children, ...props }, forward
         flexDirection: 'column',
         width: '100%',
         height: '100%',
-        background: `linear-gradient(135deg, ${purple.purple9} 0%, ${indigo.indigo9} 100%);`,
-        borderRadius: 6,
-        padding: 25,
+        background: `linear-gradient(140deg, ${purple.purple12} 3%, ${purple.purple12} 12%);`,
+        borderRadius: 20,
+        padding: 15,
       }}
     >
-      <svg aria-hidden width="38" height="38" viewBox="0 0 25 25" fill="white">
-        <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z"></path>
-        <path d="M12 0H4V8H12V0Z"></path>
-        <path d="M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z"></path>
-      </svg>
       <LinkTitle
         css={{
           fontSize: 18,
-          color: 'white',
-          marginTop: 16,
+          color: '#ECD9FA',
+          marginTop: 10,
           marginBottom: 7,
         }}
       >
-        Radix Primitives
+        Mrs Miggins Pies
       </LinkTitle>
       <LinkText
         css={{
           fontSize: 14,
-          color: mauve.mauve4,
+          color: purple.purple4,
           lineHeight: 1.3,
         }}
       >
-        Unstyled, accessible components for React.
+        Quality fayre, as you&apos;d expect.
       </LinkText>
     </NavigationMenuLink>
   </ListItem>
@@ -309,55 +322,102 @@ export const NavigationMenuDemo = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
+
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Learn</NavigationMenuTrigger>
+          <NavigationMenuTrigger>About</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ContentList layout="one">
               <ContentListItemCallout />
-              <ContentListItem href="https://stitches.dev/" title="Stitches">
-                CSS-in-JS with best-in-class developer experience.
+              <ContentListItem href="/pages/mission" title="Our mission">
+                To provide you with quality pies.
               </ContentListItem>
-              <ContentListItem href="/colors" title="Colors">
-                Beautiful, thought-out palettes with auto dark mode.
+              <ContentListItem href="/pages/savour" title="Savour the flavours">
+                Enjoy your favourite flavours, wrapped in pastry goodness.
               </ContentListItem>
-              <ContentListItem href="https://icons.radix-ui.com/" title="Icons">
-                A crisp set of 15x15 icons, balanced and consistent.
-              </ContentListItem>
+
             </ContentList>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Overview</NavigationMenuTrigger>
+          <NavigationMenuTrigger>The Staples</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ContentList layout="two">
-              <ContentListItem title="Introduction" href="/docs/primitives/overview/introduction">
-                Build high-quality, accessible design systems and web apps.
+              <ContentListItem title="Beef &amp; onion" href="/pages/beef">
+                The original crowd pleaser.
               </ContentListItem>
-              <ContentListItem
-                title="Getting started"
-                href="/docs/primitives/overview/getting-started"
-              >
-                A quick tutorial to get you up and running with Radix Primitives.
+              <ContentListItem title="Vegetable extravaganza" href="/pages/veg">
+                Just what the Doctor ordered.
               </ContentListItem>
-              <ContentListItem title="Styling" href="/docs/primitives/overview/styling">
-                Unstyled and compatible with any styling solution.
+              <ContentListItem title="Chicken" href="/pages/chicken">
+                Just cluckin&apos; good.
               </ContentListItem>
-              <ContentListItem title="Animation" href="/docs/primitives/overview/animation">
-                Use CSS keyframes or any animation library of your choice.
+              <ContentListItem title="Chilli beef" href="/pages/chilli">
+                Will repeat more often than the Dave cable TV channel.
               </ContentListItem>
-              <ContentListItem title="Accessibility" href="/docs/primitives/overview/accessibility">
-                Tested in a range of browsers and assistive technologies.
+              <ContentListItem title="Turnip surprise" href="/pages/turnip">
+                Still a surprise that it keeps on selling.
               </ContentListItem>
-              <ContentListItem title="Releases" href="/docs/primitives/overview/releases">
-                Radix Primitives releases and their changelogs.
+              <ContentListItem title="Minced beef" href="/pages/minced">
+                The football stadium half-time treat.
               </ContentListItem>
             </ContentList>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuLink href="https://github.com/radix-ui">Github</NavigationMenuLink>
+          <NavigationMenuTrigger>New Flavours</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ContentList layout="three">
+              <ContentListItem
+                title="Butcher&apos;s surprise" href="/pages/butchers">
+                Whatever cuts and shavings are left over.
+              </ContentListItem>
+              <ContentListItem
+                title="The big cheese" href="/pages/cheese">
+                Not as big as it was since product shrinkflation.
+              </ContentListItem>
+              <ContentListItem title="Party pie" href="/pages/party">
+                Tastes of cardboard, but people are too drunk to notice.
+              </ContentListItem>
+            </ContentList>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Worldwide Delivery</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ContentList layout="three">
+              <ContentListItem
+                title="Fast distribution" href="/pages/fast">
+                Our lorries have no speed limiters.
+              </ContentListItem>
+              <ContentListItem
+                title="International" href="/pages/int">
+                We shipped a pie to France once.
+              </ContentListItem>
+            </ContentList>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Training</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ContentList layout="three">
+              <ContentListItem
+                title="Tech Educators" href="https://techeducators.co.uk">
+                Educator folk of choice.
+              </ContentListItem>
+              <ContentListItem
+                title="Tech Educators Blog" href="https://techeducators.co.uk/blog">
+                The latest blog posts.
+              </ContentListItem>
+            </ContentList>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink href="https://github.com">Our Bakery</NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuIndicator />
@@ -369,6 +429,5 @@ export const NavigationMenuDemo = () => {
     </NavigationMenu>
   );
 };
-
 export default NavigationMenuDemo;
 
